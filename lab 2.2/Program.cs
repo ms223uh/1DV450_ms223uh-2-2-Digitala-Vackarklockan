@@ -8,8 +8,17 @@ namespace lab_2._2
 {
     class Program
     {
+        
+
         static void Main(string[] args)
         {
+
+
+            // Test av klockan där vi själva sätter in värdena/tiden som vi vill ha på displayen.
+           //  Vi får även skapa nya fält för varje nytt test, clockTest 1, 2...
+          //   Vi får kalla på våra metoder för att kunna skriva ut ett meddelande(string).
+         //    De två första väderna vi sätter in är till klockan & de två sista som skrivs in är till alarmklockan.
+
             ViewTestHeader("Test 1.\nTest av standardkonstrukton.");
                 AlarmClock clockTest1 = new AlarmClock();
                 Console.WriteLine(clockTest1.ToString());
@@ -39,6 +48,10 @@ namespace lab_2._2
                 clockTest3.AlarmHour = 6;
                 clockTest3.AlarmMinute = 15;
                 Run(clockTest3, 6);
+
+
+            // Vi provar vår klocka igen. Denna gången med en TryCatch metod. Om värdena överstrider reglerna som vi har satt i klassen AlarmClock så skickas ett felmeddelande.
+           //  Även här kallar vi på en metod för att skriva ut vårt meddelande.
 
 
             ViewTestHeader("\nTest 6.\nTestar egenskaperna så att undantag kastas då tid & alarmtid tilldelas \nfelaktiga värden.");
@@ -110,7 +123,10 @@ namespace lab_2._2
 
 
 
-
+        // Klockdisplay
+       //  Med hjälp av en forloop så ökas minutvärdet en minut så långt som vi vill att klockan ska gå (Vad vi själva att satt in som värde).
+      //   När värdet på alarmklockan stämmer överrens med den vanliga klockan så dyker ett meddelande upp bredvid den tiden.
+     //    Vi kallar även på vår klass & döper om den till "ct".   
 
         private static void Run(AlarmClock ct, int minute)
         {
@@ -150,7 +166,9 @@ namespace lab_2._2
  
         }
 
+        // Här skapar vi nya metoder för våra meddelanden.
 
+            private static string HorizontalLine;
 
             private static void ViewErrorMessage(string message)
             {
@@ -164,7 +182,9 @@ namespace lab_2._2
 
         public static void ViewTestHeader(string header)
         {
-            Console.WriteLine("=======================================");
+            HorizontalLine = ("=======================================");
+
+            Console.WriteLine(HorizontalLine);
             Console.WriteLine(header);
             Console.WriteLine();
         }

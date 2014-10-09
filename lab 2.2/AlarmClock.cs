@@ -9,6 +9,11 @@ namespace lab_2._2
     class AlarmClock
     {
 
+        // Här skapar vi nya fält & egenskaper.
+       //  Vi sätter även regler på våra fält.
+      //   Timfältet får bara vara inom en intervall 0-23.
+     //    Minutfältet får bara vara inom en intervall 0-59.
+
         private int _alarmHour;
 
         public int AlarmHour
@@ -78,7 +83,7 @@ namespace lab_2._2
 
         private string displayTime;
 
-
+        // Skapar nya metoder & bestämmer vilka egenskaper dem ska rätta sig efter.
 
         public AlarmClock()
             : this(0, 0)
@@ -97,6 +102,7 @@ namespace lab_2._2
 
         }
 
+        // Skapar ny metod & bestämmer vilka fält/egenskaper som ska ingå.
 
         public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
         { 
@@ -108,37 +114,58 @@ namespace lab_2._2
 
         }
 
+        // Här bestämmer vi att när minutvisaren slår över 59 så ökar vi värdet på timvisare med 1 & minutvisaren slår om till 0 & börjar om.
+       //  Här bestämmer vi även att om klockan & alarmklockan stämmer överrens så ska ett meddelande skrivas ut (visas i Program klassen).
 
         public bool TickTock()
         {
 
-            _minute++;
+    
 
-            if (_minute > 59)
-            { _hour++; _minute = 0; }
+           if (Minute < 59)
+           {
+               Minute++;
+           }
+           else
+           {
+               Minute = 0;
+               if (Hour < 23)
+               {
+                   Hour++;
+               }
+               else
+               {
+                   Hour = 0; 
+               }
+           }
+             /*   _hour++; _minute = 0; }
             
             if (_hour > 23)
-            { Hour = 0; }
+            { _hour = 0; }*/
             
-            if (_hour == _alarmHour && _minute == _alarmMinute)
+            if (Hour == AlarmHour && Minute == AlarmMinute)
             { return true; }
             
             else
                 return false;
+              
         } 
+
+
+        // Bestämmer hur decimalvärdet ska skrivas ut.
 
         public string ToString()
         {
 
-            if (_minute < 10)
+            if (Minute < 10)
             {
-                displayTime = String.Format("{0, 5}:{1:00} <{2}:{3:00}>", _hour, _minute, _alarmHour, _alarmMinute);
+                displayTime = String.Format("{0,5}:{1:00} <{2}:{3:00}>", Hour, Minute, AlarmHour, AlarmMinute);
                 return displayTime;
             }
 
             else
             {
-                displayTime = String.Format("{0,5}:{1:00} <{2}:{3:00}>", _hour, _minute, _alarmHour, _alarmMinute);
+                displayTime = String.Format("{0,5}:{1:00} <{2}:{3:00}>", Hour, Minute, AlarmHour, AlarmMinute);
                 return displayTime;
             }
 
